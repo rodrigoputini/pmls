@@ -1,0 +1,36 @@
+
+<app-menu></app-menu>
+<div class="alert alert-info" role="alert">
+        <b>Usu&aacute;rios do Sistema</b>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-8">
+    &nbsp;&nbsp;<button type="button" class="btn btn-primary" (click)="newUser()">Novo Usu&aacute;rio</button>
+  </div>
+</div>
+<br>
+<table class="table table-hover">
+<tr class="warning">
+  <th>
+    Nome
+  </th>
+  <th>
+    Gradua&ccedil;&atilde;o/Posto
+  </th>
+  <th>
+    e-mail
+  </th>
+</tr>
+  <tr *ngFor="let userItem of users">
+    <td>
+      <button type="button" class="btn btn-link" (click)="toUserDetail(userItem)">{{userItem.nomecompleto}}</button>
+    </td>
+    <td>
+      {{userItem.graduacao}}
+    </td>
+    <td>
+      {{userItem.email}}
+    </td>
+  </tr>
+</table>

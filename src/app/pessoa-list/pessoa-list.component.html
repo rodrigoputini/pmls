@@ -1,0 +1,48 @@
+
+<app-menu></app-menu>
+<div class="alert alert-info" role="alert">
+        <b>Cadastro de Pessoas</b>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <input class="form-control" type="text" name="nome" [(ngModel)]="searchField" required>
+  </div>
+  <div class="col-md-4">
+    <select class="form-control" [(ngModel)]="searchBy" name="searchBy" required >
+          <option *ngFor="let b of buscapor" [value]="b" [selected]="searchBy==b">{{b}}</option>
+      </select>
+  </div>
+  <div class="col-md-4">
+    <button type="button" class="btn btn-primary" (click)="load()" [disabled]="!searchField">Buscar</button>
+  </div>
+</div>
+<hr>
+<br>
+<div class="row" *ngIf="pessoas">
+<table class="table table-hover " >
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Cpf</th>
+      <th>RG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of pessoas">
+      <td>
+        <button type="button" class="btn btn-link" (click)="toPessoaDetail()">{{p.nome}}</button>
+      </td>
+      <td>
+        {{p.cpf}}
+      </td>
+      <td>
+        {{p.rg}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="msgErro">
+        {{ msgErro }} &nbsp;&nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-primary" (click)="toPessoaDetail()" [disabled]="!msgErro">Cadastrar nova pessoa</button>
+</div>

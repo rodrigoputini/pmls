@@ -1,0 +1,46 @@
+<app-menu></app-menu>
+<div class="alert alert-info" role="alert">
+        <b>Usu&aacute;rios do Sistema</b>
+</div>
+<form #userDetailForm="ngForm">
+<div class="input-group">
+  <span class="input-group-addon" >Nome</span>
+  <input type="text" name="nomecompleto" class="form-control" placeholder="Nome Completo" aria-describedby="sizing-addon2" [(ngModel)]="user.nomecompleto" required>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-addon" >Usu&aacute;rio</span>
+  <input type="text" name="usuario" class="form-control" placeholder="Usuario do sistema" aria-describedby="sizing-addon2" [(ngModel)]="user.username" required>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-addon" >Senha</span>
+  <input type="password" name="password" class="form-control" aria-describedby="sizing-addon2" [(ngModel)]="user.password" required>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-addon" >E-mail</span>
+  <input type="email" name="email" class="form-control" placeholder="email" aria-describedby="sizing-addon2" [(ngModel)]="user.email" required>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-addon" >Gradua&ccedil;&atilde;o</span>
+  <select class="form-control" [(ngModel)]="user.graduacao" name="graduacao" required >
+        <option *ngFor="let g of graduacoes" [value]="g" [selected]="user.graduacao==g">{{g}}</option>
+    </select>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-addon" >Acesso</span>
+  <select class="form-control" [(ngModel)]="user.role" name="role" required >
+        <option *ngFor="let r of roles" [value]="r" [selected]="user.role==r">{{r}}</option>
+  </select>
+</div>
+<br>
+<div class="row" *ngIf="user.role!='admin'">
+  <div class="col-md-8">
+    &nbsp;&nbsp;<button type="button" class="btn btn-primary" (click)="saveUser()" [disabled]="!userDetailForm.form.valid">Salvar</button>
+  </div>
+</div>
+<br>
+</form>

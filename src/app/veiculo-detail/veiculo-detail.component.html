@@ -1,0 +1,75 @@
+<app-menu></app-menu>
+<div class="alert alert-info" role="alert">
+        <b>Cadastro de ve&iacute;culos</b>
+</div>
+<form #veiculoDetailForm="ngForm">
+<div class="input-group">
+  <span class="input-group-addon" >Marca</span>
+  <input type="text" name="marca" class="form-control" placeholder="Marca"  [(ngModel)]="vcl.marca" required>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-addon" >Modelo</span>
+  <input type="text" name="modelo" class="form-control" placeholder="Modelo"  [(ngModel)]="vcl.modelo" required>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-addon" >Cor</span>
+  <input type="text" name="cor" class="form-control"  placeholder="Cor"  [(ngModel)]="vcl.cor" required>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-addon" >Ano</span>
+  <input type="text" name="ano" class="form-control"  placeholder="Ano"  [(ngModel)]="vcl.ano" required>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-addon" >Placa</span>
+  <input type="text" name="placa" class="form-control" placeholder="Placa"  [(ngModel)]="vcl.placa" required>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-addon" >Chassi</span>
+  <input type="text" name="chassi" class="form-control" placeholder="Chassi"  [(ngModel)]="vcl.chassi" required>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-addon" >Renavam</span>
+  <input type="text" name="renavam" class="form-control" placeholder="Renavam"  [(ngModel)]="vcl.renavam" required>
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-addon" >Proprietario</span>
+  <input type="text" name="proprietario" class="form-control" placeholder="Proprietario"  [(ngModel)]="vcl.proprietario" required>
+</div>
+<br>
+
+<div class="row">
+<div class="col-lg-6">
+  <div class="input-group">
+     <input type="text" class="form-control" placeholder="novo boletim" name="bo" [(ngModel)]="bo">
+     <span class="input-group-btn">
+       <button class="btn btn-link btn-sm" type="button" [disabled]="!bo" (click)="addBo()">+</button>
+     </span>
+   </div>
+ </div>
+ <div class="col-lg-6">
+   &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" (click)="saveVcl()" [disabled]="!veiculoDetailForm.form.valid">Salvar</button>
+ </div>
+ </div>
+<br>
+ <div class="row">
+   <div class="col-lg-6">
+     <h4>Boletins de Ocorrencia:</h4>
+   </div>
+ </div>
+ <div class="row">
+ <ul *ngFor="let b of vcl.bos; let i = index" [attr.data-index]="i">
+   <li>{{b}}&nbsp;<button type="button" class="btn btn-link btn-sm" (click)="rmBo(i)">-</button></li>
+ </ul>
+ </div>
+
+</form>
+<div class="alert alert-danger" role="alert" *ngIf="msgErro">
+        {{ msgErro }}
+</div>
