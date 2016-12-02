@@ -19,6 +19,33 @@ export class PessoaDetailComponent implements OnInit {
   constructor(private router: Router, private service: pessoaService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.pessoa = new Pessoa();
+    let pss = this.route.params.subscribe(params => {
+            let pssId = params['_id'];
+            if(pssId){
+                this.pessoa._id = pssId;
+                this.service.loadPessoaById(this.pessoa)
+                .subscribe(
+                          success => this.processarPessoa(success),
+                          error => this.processarErros(error));
+
+            }
+        });
   }
 
+  processarPessoa(pessoa:Pessoa){
+    if(pessoa){
+      this.pessoa = new Pessoa();
+      this.msgErro = "Nenhum registro encontrado!";
+    }
+    else{
+      this.pessoa = pessoa;
+      this.msgErro = null;
+    }
+  }
+
+  processarErros(erro:any){
+    this.pessoa = new Pessoa();
+    this.msgErro = "Nenhum registro encontrado!";
+  }
 }
