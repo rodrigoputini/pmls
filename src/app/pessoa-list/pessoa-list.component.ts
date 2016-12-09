@@ -118,7 +118,10 @@ export class PessoaListComponent implements OnInit {
     this.msgErro = "Nenhum registro encontrado!";
   }
 
-  toPessoaDetail(){
+  toPessoaDetail(pessoa){
+    this.router.navigate(['/pessoaDetail',pessoa]);
+  }
+  novaPessoa(){
     this.router.navigate(['/pessoaDetail']);
   }
 

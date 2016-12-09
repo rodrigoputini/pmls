@@ -13,6 +13,7 @@ export class Pessoa{
 
   public enderecos: Endereco[];
   public artigos: Artigo[];
+  public bos: string[];
 
   constructor() {}
 }

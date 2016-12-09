@@ -31,7 +31,7 @@
   <tbody>
     <tr *ngFor="let p of pessoas">
       <td>
-        <button type="button" class="btn btn-link" (click)="toPessoaDetail()">{{p.nome}}</button>
+        <button type="button" class="btn btn-link" (click)="toPessoaDetail(p)">{{p.nome}}</button>
       </td>
       <td>
         {{p.cpf}}
@@ -44,5 +44,5 @@
 </table>
 </div>
 <div class="alert alert-danger" role="alert" *ngIf="msgErro">
-        {{ msgErro }} &nbsp;&nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-primary" (click)="toPessoaDetail()" [disabled]="!msgErro">Cadastrar nova pessoa</button>
+        {{ msgErro }} &nbsp;&nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-primary" (click)="novaPessoa()" [disabled]="!msgErro">Cadastrar nova pessoa</button>
 </div>

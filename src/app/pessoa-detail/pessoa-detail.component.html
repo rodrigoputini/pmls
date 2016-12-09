@@ -2,10 +2,173 @@
 <div class="alert alert-info" role="alert">
         <b>Cadastro de Pessoas</b>
 </div>
-
+<form #pessoaDetailForm="ngForm">
 <div class="row">
+  <div class="col-md-12">
 <div class="input-group">
   <span class="input-group-addon" id="basic-addon1">Nome</span>
-  <input type="text" name="nome" [(ngModel)]="pessoa.nome"  class="form-control" placeholder="Nome" aria-describedby="basic-addon1">
+  <input type="text" name="nome" [(ngModel)]="pessoa.nome"  class="form-control" placeholder="Nome" aria-describedby="basic-addon1" required>
 </div>
 </div>
+</div>
+<br>
+<div class="row">
+<div class="col-md-4">
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">CPF</span>
+  <input type="number" name="cpf" [(ngModel)]="pessoa.cpf"  class="form-control" placeholder="CPF" aria-describedby="basic-addon1" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">RG</span>
+  <input type="text" name="rg" [(ngModel)]="pessoa.rg"  class="form-control" placeholder="RG" aria-describedby="basic-addon1" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">Dt Nasc</span>
+  <input type="text" name="nascimento" [(ngModel)]="pessoa.nascimento"  class="form-control" placeholder="Data Nascimento" aria-describedby="basic-addon1" required>
+</div>
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col-md-8">
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">Local de Nascimento</span>
+  <input type="text" name="localNascimento" [(ngModel)]="pessoa.localNascimento"  class="form-control" placeholder="Local de Nascimento" aria-describedby="basic-addon1" required>
+</div>
+</div>
+<div class="col-md-4">
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">Apelido</span>
+  <input type="text" name="apelido" [(ngModel)]="pessoa.apelido"  class="form-control" placeholder="Apelido" aria-describedby="basic-addon1" required>
+</div>
+</div>
+</div>
+<hr>
+ <div class="row">
+   <div class="col-md-4">
+    <h5>Boletins de Ocorr&ecirc;ncia:</h5>
+ <Label *ngFor="let b of pessoa.bos; let i = index" [attr.data-index]="i">
+  <button type="button" class="btn btn-link btn-sm" (click)="rmBo(i)">{{b}}</button>
+</Label>
+   </div>
+   <div class="col-md-4">
+     <div class="input-group">
+     <input type="text" name="bo" [(ngModel)]="bo"  class="form-control" placeholder="adicionar boletim" aria-describedby="basic-addon1" >
+     <span class="input-group-btn" id="basic-addon1" ><button class="btn btn-link btn-sm" type="button" [disabled]="!bo" (click)="addBo()">+</button></span>
+   </div>
+ </div>
+ </div>
+ <hr>
+
+ <div class="row">
+   <div class="col-md-4">
+     <h5>Artigos em que j&aacute; foi condenado!</h5>
+     <label *ngFor="let a of pessoa.artigos; let x = index" [attr.data-index]="x">
+      <button type="button" class="btn btn-link btn-sm" (click)="rmArtigo(x)">{{a.numero}}-{{a.descricao}}</button>
+     </label>
+   </div>
+   <div class="col-md-4">
+     <div class="input-group">
+     <select class="form-control" [(ngModel)]="artigo" name="artigo" >
+           <option *ngFor="let art of artigos" [value]="art.numero" >{{art.numero}}-{{art.descricao}}</option>
+       </select><span class="input-group-btn" id="basic-addon1" ><button class="btn btn-link btn-sm" type="button" [disabled]="!artigo" (click)="addArtigo()">+</button></span>
+     </div>
+   </div>
+ </div>
+
+ <hr>
+
+ <div class="row">
+   <div class="col-md-12">
+     <h5>Endere&ccedil;os conhecidos</h5>
+   </div>
+ </div>
+
+ <div class="row">
+   <div class="col-md-4">
+     <label *ngFor="let e of pessoa.enderecos; let z = index" [attr.data-index]="z">
+      &nbsp;<button type="button" class="btn btn-link btn-sm" >{{e.tipoLogradouro}}&nbsp;{{e.logradouro}}&nbsp;{{e.numero}}&nbsp;{{e.complemento}} - {{e.cidade}}</button>
+     </label>
+   </div>
+ </div>
+
+<div class="row">
+  <div class="col-md-2">
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Tipo</span>
+      <input type="text" name="tipo" [(ngModel)]="endereco.tipoLogradouro"  class="form-control" placeholder="tipo" aria-describedby="basic-addon1" >
+    </div>
+  </div>
+    <div class="col-md-8">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Logradouro</span>
+        <input type="text" name="logradouro" [(ngModel)]="endereco.logradouro"  class="form-control" placeholder="logradouro" aria-describedby="basic-addon1" >
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Nr</span>
+        <input type="text" name="numero" [(ngModel)]="endereco.numero"  class="form-control" placeholder="nr" aria-describedby="basic-addon1" >
+      </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-4">
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Compl</span>
+      <input type="text" name="complemento" [(ngModel)]="endereco.complemento"  class="form-control" placeholder="complemento" aria-describedby="basic-addon1" >
+    </div>
+  </div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Bairro</span>
+        <input type="text" name="bairro" [(ngModel)]="endereco.bairro"  class="form-control" placeholder="bairro" aria-describedby="basic-addon1" >
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Comunidade</span>
+        <input type="text" name="comunidade" [(ngModel)]="endereco.comunidade"  class="form-control" placeholder="comunidade" aria-describedby="basic-addon1" >
+      </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Cidade</span>
+      <input type="text" name="cidade" [(ngModel)]="endereco.cidade"  class="form-control" placeholder="cidade" aria-describedby="basic-addon1" >
+    </div>
+  </div>
+    <div class="col-md-2">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">UF</span>
+        <input type="text" name="uf" [(ngModel)]="endereco.estado"  class="form-control" placeholder="uf" aria-describedby="basic-addon1" >
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Pa&iacute;s</span>
+        <input type="text" name="pais" [(ngModel)]="endereco.pais" class="form-control" placeholder="Pais" aria-describedby="basic-addon1" >
+      </div>
+  </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-primary"  [disabled]="(!endereco.tipoLogradouro||!endereco.logradouro||!endereco.estado||!endereco.cidade)">Salvar Endere&ccedil;o</button>
+  </div>
+</div>
+
+ <hr>
+
+ <div class="row">
+  <div class="col-md-2">
+    <div class="input-group">
+    <button type="button" class="btn btn-primary"  [disabled]="!pessoaDetailForm.form.valid">Salvar Tudo</button>
+  </div>
+  </div>
+  </div>
+</form>

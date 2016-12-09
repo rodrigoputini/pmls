@@ -5,31 +5,20 @@
 </div>
 <br>
   <div class="row">
-  <div class="col-lg-2">
-    <div class="input-group">
-<button type="button" class="btn btn-primary" (click)="novoVeiculo()">Novo ve&iacute;culo</button>
-    </div>
-  </div>
-  <div class="col-lg-4">
-    <div class="input-group">
+    <div class="col-lg-12">
       <input type="text" name="placa" placeholder="Placa"  [(ngModel)]="veiculo.placa" required>
       <button type="button" class="btn btn btn-primary btn-sm" [disabled]="!veiculo.placa" (click)="loadByPlaca()">Buscar Placa</button>
     </div>
-  </div>
 </div>
 <br>
-<div class="card card-block" style="width: 40rem;" *ngFor="let vcl of veiculos">
+<div class="card card-inverse" style="width: 100%;background-color: #333; border-color: #333;" *ngFor="let vcl of veiculos">
   <h3 class="card-title">{{vcl.marca}}/{{vcl.modelo}}/{{vcl.cor}}  {{vcl.placa}}</h3>
   <h4 class="card-title">{{vcl.proprietario}}</h4>
-  <p class="card-text">
-    ano: {{vcl.ano}}   -   renavam: {{vcl.renavam}}   -   chassi: {{vcl.chassi}}<br>
-  </p>
-  BO's:[
-  <label *ngFor="let b of vcl.bos">
-    &nbsp;{{b}}&nbsp;
-  </label>]
-  <button type="button" class="btn btn-link" (click)="toVclDetail(vcl)">Editar</button>
+  <p class="card-text">ano: {{vcl.ano}}   -   renavam: {{vcl.renavam}}   -   chassi: {{vcl.chassi}}</p>
+  <h4 class="card-title">BO's:</h4>
+  <h5 class="card-text" *ngFor="let b of vcl.bos">{{b}}</h5>
+  <button type="button" class="btn btn-primary" (click)="toVclDetail(vcl)">Editar</button>
 </div>
 <div class="alert alert-danger" role="alert" *ngIf="msgErro">
-        {{ msgErro }}
+{{ msgErro }}    <button type="button" class="btn btn-primary" (click)="novoVeiculo()">Novo ve&iacute;culo</button>
 </div>

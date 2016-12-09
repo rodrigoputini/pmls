@@ -1,5 +1,12 @@
-<ul class="nav nav-tabs">
-  <li class="nav-item" *ngFor="let menuItem of menus">
-    <a class="nav-link" href="{{menuItem.link}}">{{menuItem.label}}</a>
-  </li>
-</ul>
+<div class="row">
+  <div class="col-md-12">
+    <nav class="navbar navbar-light bg-faded">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"></button>
+      <div class="collapse" id="exCollapsingNavbar">
+        <div class="text-muted p-1">
+        <a *ngFor="let menuItem of menus" class="dropdown-item" href="{{menuItem.link}}">{{menuItem.label}}</a>
+        </div>
+      </div>
+    </nav>
+</div>
+</div>

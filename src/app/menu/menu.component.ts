@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit {
   private menu: Menu;
   private menus: Menu[];
   private msgErro:string;
+  private currentUser:string;
 
   constructor(private router: Router, private service: menuService) { }
 
@@ -25,6 +26,7 @@ export class MenuComponent implements OnInit {
         this.router.navigate(['']);
 		}
     else{
+      this.currentUser = localStorage['nomeusuario']; 
       this.menu = new Menu();
       this.role = localStorage['role'];
       this.load();

@@ -9,5 +9,6 @@ export class Endereco{
   public cidade: string;
   public estado: string;
   public pais:string;
+  public cep:string;
   constructor(){}
 }
