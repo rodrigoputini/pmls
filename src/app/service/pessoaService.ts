@@ -88,22 +88,22 @@ export class pessoaService{
                   .catch(this.services.processarErros);
 
   }
-/*    updateVeiculo(vcl: Veiculo): Observable<string> {
-    		let params = JSON.stringify(vcl);
-        let updateUrl = this.veiculoUrl+"/update";
+    updatePessoa(pes: Pessoa): Observable<string> {
+    		let params = JSON.stringify(pes);
+        let updateUrl = this.pessoaUrl+"/update";
 
     		return this.http.post(this.services.url(updateUrl), params,
     						this.services.headers())
     	                .map(this.services.extrairDados)
     	                .catch(this.services.processarErros);
     	}
-      insertVeiculo(vcl: Veiculo): Observable<string> {
-          let params = JSON.stringify(vcl);
-          let updateUrl = this.veiculoUrl+"/insert";
+      insertPessoa(pes: Pessoa): Observable<string> {
+          let params = JSON.stringify(pes);
+          let updateUrl = this.pessoaUrl+"/insert";
 
           return this.http.post(this.services.url(updateUrl), params,
                   this.services.headers())
                         .map(this.services.extrairDados)
                         .catch(this.services.processarErros);
-        }*/
+        }
 }

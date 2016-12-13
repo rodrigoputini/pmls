@@ -49,7 +49,7 @@
 </div>
 <hr>
  <div class="row">
-   <div class="col-md-4">
+   <div class="col-md-4 alert alert-warning">
     <h5>Boletins de Ocorr&ecirc;ncia:</h5>
  <Label *ngFor="let b of pessoa.bos; let i = index" [attr.data-index]="i">
   <button type="button" class="btn btn-link btn-sm" (click)="rmBo(i)">{{b}}</button>
@@ -65,7 +65,7 @@
  <hr>
 
  <div class="row">
-   <div class="col-md-4">
+   <div class="col-md-4 alert alert-warning">
      <h5>Artigos em que j&aacute; foi condenado!</h5>
      <label *ngFor="let a of pessoa.artigos; let x = index" [attr.data-index]="x">
       <button type="button" class="btn btn-link btn-sm" (click)="rmArtigo(x)">{{a.numero}}-{{a.descricao}}</button>
@@ -83,16 +83,15 @@
  <hr>
 
  <div class="row">
-   <div class="col-md-12">
+   <div class="col-md-12 alert alert-warning">
      <h5>Endere&ccedil;os conhecidos</h5>
    </div>
  </div>
-
  <div class="row">
-   <div class="col-md-4">
-     <label *ngFor="let e of pessoa.enderecos; let z = index" [attr.data-index]="z">
-      &nbsp;<button type="button" class="btn btn-link btn-sm" >{{e.tipoLogradouro}}&nbsp;{{e.logradouro}}&nbsp;{{e.numero}}&nbsp;{{e.complemento}} - {{e.cidade}}</button>
-     </label>
+   <div class="col-md-12 alert alert-warning">
+     <p *ngFor="let e of pessoa.enderecos; let z = index" [attr.data-index]="z">
+      &nbsp;<button type="button" (click)="rmAddress(z)" class="btn btn-link btn-sm" >{{e.tipoLogradouro}}&nbsp;{{e.logradouro}}&nbsp;{{e.numero}}&nbsp;{{e.complemento}}  {{e.bairro}}  {{e.comunidade}} - {{e.cidade}} - {{e.estado}} - {{e.cep}}</button>
+    </p>
    </div>
  </div>
 
@@ -118,7 +117,7 @@
 </div>
 <br>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">Compl</span>
       <input type="text" name="complemento" [(ngModel)]="endereco.complemento"  class="form-control" placeholder="complemento" aria-describedby="basic-addon1" >
@@ -135,6 +134,12 @@
         <span class="input-group-addon" id="basic-addon1">Comunidade</span>
         <input type="text" name="comunidade" [(ngModel)]="endereco.comunidade"  class="form-control" placeholder="comunidade" aria-describedby="basic-addon1" >
       </div>
+  </div>
+  <div class="col-md-2">
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">CEP</span>
+      <input type="text" name="cep" [(ngModel)]="endereco.cep" class="form-control" placeholder="CEP" aria-describedby="basic-addon1" >
+    </div>
   </div>
 </div>
 <br>
@@ -156,18 +161,18 @@
         <span class="input-group-addon" id="basic-addon1">Pa&iacute;s</span>
         <input type="text" name="pais" [(ngModel)]="endereco.pais" class="form-control" placeholder="Pais" aria-describedby="basic-addon1" >
       </div>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-primary" (click)="addAddress()"  [disabled]="(!endereco.tipoLogradouro||!endereco.logradouro||!endereco.estado||!endereco.cidade)">Salvar Endere&ccedil;o</button>
+    </div>
   </div>
-  <div class="col-md-2">
-    <button type="button" class="btn btn-primary"  [disabled]="(!endereco.tipoLogradouro||!endereco.logradouro||!endereco.estado||!endereco.cidade)">Salvar Endere&ccedil;o</button>
-  </div>
-</div>
 
  <hr>
 
  <div class="row">
   <div class="col-md-2">
     <div class="input-group">
-    <button type="button" class="btn btn-primary"  [disabled]="!pessoaDetailForm.form.valid">Salvar Tudo</button>
+    <button type="button" class="btn btn-primary" (click)="savePeople()"  [disabled]="!pessoaDetailForm.form.valid">Salvar Tudo</button>
   </div>
   </div>
   </div>

@@ -73,6 +73,8 @@ export class PessoaDetailComponent implements OnInit {
   }
 
   addArtigo(){
+    if(!this.pessoa.artigos)this.pessoa.artigos = new Array<Artigo>();
+
     var flag = false;
     for(let art of this.pessoa.artigos){
       if(art.numero==this.artigo)
@@ -91,6 +93,15 @@ export class PessoaDetailComponent implements OnInit {
     this.pessoa.artigos.splice(i,1);
   }
 
+  addAddress(){
+    if(!this.pessoa.enderecos)this.pessoa.enderecos = new Array<Endereco>();
+    this.pessoa.enderecos.push(this.endereco);
+    this.endereco = new Endereco();
+    this.endereco.pais = "Brasil";
+  }
+  rmAddress(i:number){
+    this.pessoa.enderecos.splice(i,1);
+  }
 
 
   processarArtigos(artigos:[Artigo]){
@@ -114,5 +125,19 @@ export class PessoaDetailComponent implements OnInit {
     }
   }
 
-
+  savePeople(){
+    if(this.pessoa._id){
+      this.service.updatePessoa(this.pessoa)
+      .subscribe(
+                success => this.msgErro = "Atualizado com sucesso!",
+                error => this.msgErro = 'Não foi atualizar!');
+    }
+    else{
+      this.service.insertPessoa(this.pessoa)
+      .subscribe(
+                success => this.msgErro = "Inserido com sucesso",
+                error => this.msgErro = 'Não foi possível inserir!');
+    }
+    this.router.navigate(['/pessoaList']);
+  }
 }
